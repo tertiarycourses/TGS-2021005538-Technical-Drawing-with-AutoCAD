@@ -18,6 +18,7 @@ A host drawing with a live xref title block and a PDF underlay ready for tracing
 
 - `title-block.dwg` — AutoCAD drawing file
 - `ex1-drawing-sheet.pdf` — drawing sheet / reference (PDF)
+- `new-office-layout-with-xref.dwg` — AutoCAD drawing file
 
 ## Step-by-step
 

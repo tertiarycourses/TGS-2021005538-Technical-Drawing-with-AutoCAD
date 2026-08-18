@@ -18,6 +18,8 @@ A correctly configured metric drawing (units, limits, workspace) saved as DWG, p
 
 - `lab01-table.dwg` — AutoCAD drawing file
 - `reading-practice.dwg` — AutoCAD drawing file
+- `workspaces.dwg` — AutoCAD drawing file
+- `drafting-settings.dwg` — AutoCAD drawing file
 
 ## Step-by-step
 

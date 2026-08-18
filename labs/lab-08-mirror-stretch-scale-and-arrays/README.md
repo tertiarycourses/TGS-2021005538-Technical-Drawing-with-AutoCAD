@@ -19,6 +19,7 @@ The completed EX-6 drawing with its symmetric outline and evenly arrayed hole pa
 - `ex6.dwg` — AutoCAD drawing file
 - `ex6-drawing-sheet.pdf` — drawing sheet / reference (PDF)
 - `ex6.png` — reference image
+- `sawblade.dwg` — AutoCAD drawing file
 
 ## Step-by-step
 

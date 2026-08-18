@@ -117,22 +117,22 @@ def write_docx(act, folder, files):
 
 # staged asset files for each lab (in labs/_assets)
 FILES = {
-    1:  ["lab01-table.dwg", "reading-practice.dwg"],
+    1:  ["lab01-table.dwg", "reading-practice.dwg", "workspaces.dwg", "drafting-settings.dwg"],
     2:  ["ex1.dwg", "ex1-drawing-sheet.pdf", "ex1.png"],
     3:  ["ex2.dwg", "ex2-drawing-sheet.pdf", "ex2.png"],
     4:  ["ex3.dwg", "ex3-drawing-sheet.pdf", "ex3.png"],
     5:  ["iso-object.dwg", "iso-object-sheet.pdf", "iso-object.png"],
     6:  ["ex4.dwg", "ex4-drawing-sheet.pdf", "ex4.png"],
     7:  ["ex5.dwg", "ex5-drawing-sheet.pdf", "ex5.png"],
-    8:  ["ex6.dwg", "ex6-drawing-sheet.pdf", "ex6.png"],
-    9:  ["lab-table-lesson2.dwg"],
-    10: ["ex7.dwg", "ex7-drawing-sheet.pdf", "ex7.png"],
-    11: ["title-block.dwg"],
-    12: ["title-block.dwg", "ex1-drawing-sheet.pdf"],
+    8:  ["ex6.dwg", "ex6-drawing-sheet.pdf", "ex6.png", "sawblade.dwg"],
+    9:  ["lab-table-lesson2.dwg", "office-plan-ground-floor.dwg"],
+    10: ["ex7.dwg", "ex7-drawing-sheet.pdf", "ex7.png", "new-office-design.dwg"],
+    11: ["title-block.dwg", "architecture-library.dwg", "new-office-dynamic-blocks.dwg"],
+    12: ["title-block.dwg", "ex1-drawing-sheet.pdf", "new-office-layout-with-xref.dwg"],
     13: ["lab-table-lesson2.dwg", "title-block.dwg"],
     14: ["ex8.dwg", "ex8-drawing-sheet.pdf", "ex8.png"],
-    15: ["ex3.dwg", "ex3-drawing-sheet.pdf"],
-    16: ["title-block.dwg"],
+    15: ["ex3.dwg", "ex3-drawing-sheet.pdf", "landscaping-rev1.dwg", "landscaping-rev2.dwg"],
+    16: ["title-block.dwg", "new-office-layout.dwg"],
 }
 
 def main():

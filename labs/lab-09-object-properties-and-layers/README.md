@@ -17,6 +17,7 @@ A layered version of the table drawing where every object's colour and linetype 
 ## Files in this lab
 
 - `lab-table-lesson2.dwg` — AutoCAD drawing file
+- `office-plan-ground-floor.dwg` — AutoCAD drawing file
 
 ## Step-by-step
 

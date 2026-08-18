@@ -19,6 +19,7 @@ An edited EX-7 layout adjusted entirely with grips, plus fluent use of isolate/h
 - `ex7.dwg` — AutoCAD drawing file
 - `ex7-drawing-sheet.pdf` — drawing sheet / reference (PDF)
 - `ex7.png` — reference image
+- `new-office-design.dwg` — AutoCAD drawing file
 
 ## Step-by-step
 

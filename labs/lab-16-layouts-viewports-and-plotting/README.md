@@ -17,6 +17,7 @@ A print-ready A3 layout with title block, two locked scaled viewports and a plot
 ## Files in this lab
 
 - `title-block.dwg` — AutoCAD drawing file
+- `new-office-layout.dwg` — AutoCAD drawing file
 
 ## Step-by-step
 

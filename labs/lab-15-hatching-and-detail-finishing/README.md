@@ -18,6 +18,8 @@ A section view with correct ANSI/ISO hatch patterns and a presentation-filled el
 
 - `ex3.dwg` — AutoCAD drawing file
 - `ex3-drawing-sheet.pdf` — drawing sheet / reference (PDF)
+- `landscaping-rev1.dwg` — AutoCAD drawing file
+- `landscaping-rev2.dwg` — AutoCAD drawing file
 
 ## Step-by-step
 

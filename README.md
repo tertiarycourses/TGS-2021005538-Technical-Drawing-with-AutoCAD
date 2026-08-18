@@ -64,7 +64,8 @@ Each lab folder contains the Markdown instructions (`README.md`), a printable PD
 
 Lab drawing exercises adapt practice files from
 [DCS-training/AutocadSelfLearn](https://github.com/DCS-training/AutocadSelfLearn),
-[PacktPublishing/60-AutoCAD-2D-3D-Drawings-and-Practical-Projects](https://github.com/PacktPublishing/60-AutoCAD-2D-3D-Drawings-and-Practical-Projects) and
+[PacktPublishing/60-AutoCAD-2D-3D-Drawings-and-Practical-Projects](https://github.com/PacktPublishing/60-AutoCAD-2D-3D-Drawings-and-Practical-Projects),
+[PacktPublishing/Mastering-AutoCAD](https://github.com/PacktPublishing/Mastering-AutoCAD) and
 [RichaSavant/AutoCAD-2021](https://github.com/RichaSavant/AutoCAD-2021) under their respective licences.
 
 ## Rebuilding the Courseware

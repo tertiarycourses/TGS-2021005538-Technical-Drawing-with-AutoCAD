@@ -17,6 +17,8 @@ A BALLOON block with PART_NO / DESC / QTY attributes, inserted and filled in for
 ## Files in this lab
 
 - `title-block.dwg` — AutoCAD drawing file
+- `architecture-library.dwg` — AutoCAD drawing file
+- `new-office-dynamic-blocks.dwg` — AutoCAD drawing file
 
 ## Step-by-step
 
