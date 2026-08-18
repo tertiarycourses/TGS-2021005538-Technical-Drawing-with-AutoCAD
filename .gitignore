@@ -1,0 +1,27 @@
+# Secrets / local config (never pushed)
+.env
+.env.*
+
+# WSQ assessment materials (confidential — never pushed)
+/assessment/
+/assessment\ /
+
+# Distribution archives (rebuildable — never pushed to GitHub)
+*.zip
+
+# Source material the project was derived from — not ours to republish.
+**/reference/
+# …but skill reference *implementations* (builder scripts the toolchain runs) stay tracked:
+!.claude/skills/**/reference/
+!.claude/skills/**/reference/**
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+~$*
+.~lock.*
+
+# This course's live assessment content (questions + answer keys) — confidential
+.claude/skills/wsq-assessment/build_assessment.py
