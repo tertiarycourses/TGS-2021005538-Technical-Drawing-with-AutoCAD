@@ -60,6 +60,3 @@ An annotated drawing with consistent TITLE and NOTES text styles and a completed
 ## Check your work
 
 All annotation uses your named styles (none on Standard), the title block is complete, and changing the NOTES style font updates every note at once.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*

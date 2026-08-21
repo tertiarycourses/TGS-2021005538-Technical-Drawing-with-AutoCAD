@@ -31,7 +31,7 @@ Final assessment (Day 2): Written Assessment (SAQ, 60 min) + Practical Performan
 
 ```
 courseware/                  Generated artifacts (single-source pipeline)
-  WSQ Technical Drawing with AutoCAD-v12.pptx/.pdf   Slide deck (151 slides)
+  WSQ Technical Drawing with AutoCAD-v13.pptx/.pdf   Concept-led slide deck (116 slides)
   LP-WSQ Technical Drawing with AutoCAD.docx/.pdf    Lesson Plan (2-day schedule)
   LG-WSQ Technical Drawing with AutoCAD.docx/.pdf    Learner Guide
 LG-WSQ Technical Drawing with AutoCAD.md             Learner Guide (Markdown mirror)
@@ -68,6 +68,10 @@ Lab drawing exercises adapt practice files from
 [PacktPublishing/Mastering-AutoCAD](https://github.com/PacktPublishing/Mastering-AutoCAD) and
 [RichaSavant/AutoCAD-2021](https://github.com/RichaSavant/AutoCAD-2021) under their respective licences.
 
+The local `reference/` folder may contain additional trainer-owned or third-party source material.
+It is reviewed for instructional ideas only and is never copied into the public learner package
+unless redistribution rights are documented.
+
 ## Rebuilding the Courseware
 
 All artifacts are generated from one content module (`course_data.py` + `data_domain1..5.py` + `data_concepts.py`) so the deck, Lesson Plan, Learner Guide and labs never drift apart:
@@ -75,6 +79,8 @@ All artifacts are generated from one content module (`course_data.py` + `data_do
 ```bash
 bash .claude/skills/courseware-build/build/build_courseware.sh   # PPT + LP + LG (+ PDFs, TOC)
 python3 .claude/skills/courseware-build/build/build_labs.py      # regenerate the 16 lab folders
+python3 .claude/skills/courseware-build/build/render_lab_markdown_pdfs.py --root labs
+                                                               # pagination-safe README PDFs
 ```
 
 Requires Python 3 with `python-pptx`, `python-docx`, `Pillow`, and LibreOffice (`soffice`) for PDF rendering. The legacy-deck screenshot assets used by a rebuild live in the local (untracked) `reference/` folder.
@@ -89,7 +95,6 @@ Requires Python 3 with `python-pptx`, `python-docx`, `Pillow`, and LibreOffice (
 
 - Email: enquiry@tertiaryinfotech.com · Tel: +65 6100 0613
 - LMS: https://lms-tms.tertiaryinfotech.com
-- Practice exam: https://exams.tertiaryinfotech.com
 
 ---
 © 2026 Tertiary Infotech Academy Pte Ltd (UEN 201200696W). Course materials for enrolled learners and trainers.

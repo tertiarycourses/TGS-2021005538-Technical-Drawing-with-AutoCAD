@@ -6,13 +6,13 @@
 
 ## Goal
 
-Create a new metric drawing from the ACADISO template, choose the Drafting & Annotation workspace, set units and limits, then open a finished drawing and practise reading it with the zoom, pan and ViewCube navigation tools.
+Create and verify a metric drawing environment, compare saved workspace and drafting-setting examples, then open a finished drawing and practise reading it with zoom, pan and ViewCube.
 
 ## You'll produce
 
-A correctly configured metric drawing (units, limits, workspace) saved as DWG, plus confident navigation of an existing technical drawing.
+A correctly configured metric drawing saved as DWG, a settings audit, and confident navigation of an existing technical drawing.
 
-**Commands / tools:** ACADISO template, UNITS, LIMITS, ZOOM, PAN, ViewCube
+**Commands / tools:** ACADISO template, UNITS, LIMITS, DSETTINGS, WSCURRENT, ZOOM, PAN, ViewCube
 
 ## Files in this lab
 
@@ -29,16 +29,16 @@ A correctly configured metric drawing (units, limits, workspace) saved as DWG, p
    NEW → acadiso.dwt
    ```
 
-2. Switch the workspace to Drafting & Annotation from the status bar gear icon
+2. Open workspaces.dwg, compare the available workspaces, then switch to Drafting & Annotation
 
    ```
-   WSCURRENT → Drafting & Annotation
+   OPEN workspaces.dwg → WSCURRENT → Drafting & Annotation
    ```
 
-3. Set decimal length units with 0.00 precision and decimal degrees for angles
+3. Set decimal millimetres with 0.00 precision and decimal degrees for angles
 
    ```
-   UNITS → Length: Decimal, Precision 0.00
+   UNITS → Insertion scale: Millimetres → Length: Decimal, 0.00
    ```
 
 4. Frame an A3-sized working area with drawing limits, then zoom to it
@@ -47,10 +47,10 @@ A correctly configured metric drawing (units, limits, workspace) saved as DWG, p
    LIMITS → 0,0 → 420,297  |  ZOOM → All
    ```
 
-5. Toggle the precision aids on the status bar: grid, snap, ortho, polar and object snap
+5. Open drafting-settings.dwg and audit grid, snap, ortho, polar and object-snap settings
 
    ```
-   F7 grid · F9 snap · F8 ortho · F10 polar · F3 osnap
+   OPEN drafting-settings.dwg → DSETTINGS · F7 · F9 · F8 · F10 · F3
    ```
 
 6. Open lab01-table.dwg and navigate it: wheel-zoom, pan, zoom window and zoom extents
@@ -67,7 +67,4 @@ A correctly configured metric drawing (units, limits, workspace) saved as DWG, p
 
 ## Check your work
 
-You can state the drawing's units, limits and workspace; zoom to any detail of lab01-table.dwg and back to extents; and your lab01-setup.dwg opens with the settings intact.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*
+INSUNITS reports millimetres, limits are 420 × 297, Drafting & Annotation is current, the precision-aid audit is complete, and lab01-setup.dwg reopens with the settings intact.

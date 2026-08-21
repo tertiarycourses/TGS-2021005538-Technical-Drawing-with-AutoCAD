@@ -57,6 +57,3 @@ A clean EX-5 profile with every corner finished exactly as dimensioned on the sh
 ## Check your work
 
 No overshooting or dangling segments remain (zoom around the whole profile), and every fillet radius / chamfer distance matches the drawing sheet.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*

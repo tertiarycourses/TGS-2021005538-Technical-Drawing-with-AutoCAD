@@ -119,7 +119,6 @@ bullets([
  "Second pass: redo Labs 2–8 from just the drawing-sheet PDFs, without the step-by-step instructions.",
  "Review the Key Concepts bullets of each topic — the written assessment (SAQ) draws on them.",
  "The practical performance asks you to produce a dimensioned technical drawing end-to-end: set up, draw, modify, organise with layers, dimension, and plot — Labs 2, 7, 9, 14 and 16 cover that chain.",
- f"Sharpen your readiness with the Tertiary Infotech AutoCAD practice exam: {C.PRACTICE_EXAM_URL}",
  f"Course materials, assessment submission and your certificate are on the LMS: {C.LMS_URL}",
 ])
 
@@ -191,30 +190,39 @@ prodoc.add_cover_page(doc,"LEARNER GUIDE",C.TITLE,C.VERSION.lstrip("v"),
                       org_logo=os.path.join(ASSETS,"tertiary-infotech-logo.png"),
                       course_logo=None, course_code=C.COURSE_CODE)
 prodoc.add_version_control(doc,[
- ("11",C.VERSION_DATE,"Legacy release — learner guide aligned to master trainer slides v11.",C.TRAINER),
+ ("11","18 August 2026","Legacy release — learner guide aligned to master trainer slides v11.",C.TRAINER),
+ ("12","18 August 2026",
+  "Full single-source regeneration with 16 step-by-step labs, drawing-reading reference, "
+  "assessment preparation guidance and glossary.",C.TRAINER),
  (C.VERSION.lstrip("v"),C.VERSION_DATE,
-  "Full regeneration in the single-source pipeline: 16 step-by-step labs in per-lab folders "
-  "(DWG data files + PDF instruction sheets), drawing-reading quick reference, assessment "
-  "preparation guidance and glossary — 100% aligned with the v12 slide deck and Lesson Plan.",C.TRAINER),
+  "DWG integration release: strengthened Labs 1, 8–12, 15 and 16 with active practice files, "
+  "repaired the Lab 12 Landscaping_REV1 relative Xref dependency, and retained all detailed "
+  "procedures in the Learner Guide and lab packs for alignment with the concept-led v13 deck.",C.TRAINER),
 ])
 prodoc.add_toc(doc)
 
 def code_para(text):
     for line in text.split("\n"):
         para=doc.add_paragraph()
+        para.paragraph_format.keep_together=True
         r=para.add_run(line); r.font.name="Consolas"; r.font.size=Pt(9.5); r.font.color.rgb=INKCODE
 
 for kind,*rest in B:
-    if kind=="h1": doc.add_heading(rest[0],level=1)
-    elif kind=="h2": doc.add_heading(rest[0],level=2)
+    if kind=="h1":
+        para=doc.add_heading(rest[0],level=1); para.paragraph_format.keep_with_next=True
+    elif kind=="h2":
+        para=doc.add_heading(rest[0],level=2); para.paragraph_format.keep_with_next=True
     elif kind=="h3":
         para=doc.add_paragraph(); r=para.add_run(rest[0]); r.bold=True; r.font.size=Pt(11); r.font.color.rgb=BRAND
+        para.paragraph_format.keep_with_next=True
     elif kind=="p": doc.add_paragraph(rest[0])
     elif kind=="bullets":
         for x in rest[0]: doc.add_paragraph(x,style="List Bullet")
     elif kind=="steps":
         for i,(instr,cmd) in enumerate(rest[0],1):
             para=doc.add_paragraph(); para.paragraph_format.left_indent=Inches(0.25)
+            para.paragraph_format.keep_together=True
+            para.paragraph_format.keep_with_next=bool(cmd)
             r=para.add_run(f"{i}.  "); r.bold=True
             para.add_run(instr)
             if cmd: code_para("     "+cmd)

@@ -74,8 +74,6 @@ def write_md(act, folder, files):
     L.append("")
     L.append(act["test"])
     L.append("")
-    L.append("---")
-    L.append(f"*© 2026 {C.ORG} ({C.UEN}) · {C.TITLE} · {C.COURSE_CODE}*")
     with open(os.path.join(folder, "README.md"), "w") as f:
         f.write("\n".join(L))
 
@@ -91,23 +89,26 @@ def write_docx(act, folder, files):
     p = doc.add_paragraph(); r = p.add_run(f"{C.ORG}  ·  {C.UEN}  ·  Version {C.VERSION} · {C.VERSION_DATE}")
     r.font.size = Pt(9); r.font.color.rgb = GREY
 
-    doc.add_heading("Objective", level=1); doc.add_paragraph(act["objective"])
-    doc.add_heading("Goal", level=1); doc.add_paragraph(act["desc"])
-    doc.add_heading("You'll produce", level=1)
+    for heading in doc.paragraphs[-1:]: heading.paragraph_format.keep_with_next = True
+    heading=doc.add_heading("Objective", level=1); heading.paragraph_format.keep_with_next=True; doc.add_paragraph(act["objective"])
+    heading=doc.add_heading("Goal", level=1); heading.paragraph_format.keep_with_next=True; doc.add_paragraph(act["desc"])
+    heading=doc.add_heading("You'll produce", level=1); heading.paragraph_format.keep_with_next=True
     doc.add_paragraph(act["build"])
     p = doc.add_paragraph(); r = p.add_run("Commands / tools: "); r.bold = True
     p.add_run(act["services"])
     if files:
-        doc.add_heading("Files in this lab", level=1)
+        heading=doc.add_heading("Files in this lab", level=1); heading.paragraph_format.keep_with_next=True
         for f in files:
             doc.add_paragraph(f, style="List Bullet")
-    doc.add_heading("Step-by-step", level=1)
+    heading=doc.add_heading("Step-by-step", level=1); heading.paragraph_format.keep_with_next=True
     for i, (instr, cmd) in enumerate(act["steps"], 1):
         p = doc.add_paragraph(style="List Number"); p.add_run(instr)
+        p.paragraph_format.keep_together=True; p.paragraph_format.keep_with_next=bool(cmd)
         if cmd:
             cp = doc.add_paragraph(); r = cp.add_run("     " + cmd)
+            cp.paragraph_format.keep_together=True
             r.font.name = "Consolas"; r.font.size = Pt(9.5); r.font.color.rgb = RGBColor(0x0B, 0x30, 0x60)
-    doc.add_heading("Check your work", level=1)
+    heading=doc.add_heading("Check your work", level=1); heading.paragraph_format.keep_with_next=True
     doc.add_paragraph(act["test"])
     p = doc.add_paragraph(); r = p.add_run(f"© 2026 {C.ORG} ({C.UEN})")
     r.font.size = Pt(8.5); r.font.color.rgb = GREY
@@ -128,7 +129,7 @@ FILES = {
     9:  ["lab-table-lesson2.dwg", "office-plan-ground-floor.dwg"],
     10: ["ex7.dwg", "ex7-drawing-sheet.pdf", "ex7.png", "new-office-design.dwg"],
     11: ["title-block.dwg", "architecture-library.dwg", "new-office-dynamic-blocks.dwg"],
-    12: ["title-block.dwg", "ex1-drawing-sheet.pdf", "new-office-layout-with-xref.dwg"],
+    12: ["title-block.dwg", "ex1-drawing-sheet.pdf", "new-office-layout-with-xref.dwg", "Landscaping_REV1.dwg"],
     13: ["lab-table-lesson2.dwg", "title-block.dwg"],
     14: ["ex8.dwg", "ex8-drawing-sheet.pdf", "ex8.png"],
     15: ["ex3.dwg", "ex3-drawing-sheet.pdf", "landscaping-rev1.dwg", "landscaping-rev2.dwg"],

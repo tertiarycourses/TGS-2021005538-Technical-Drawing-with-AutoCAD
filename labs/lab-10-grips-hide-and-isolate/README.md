@@ -6,11 +6,11 @@
 
 ## Goal
 
-Use multi-functional grips on practice drawing EX-7 to stretch, move, copy and rotate features without commands, and manage a busy view with Isolate and Hide Selected Objects.
+Use multi-functional grips on EX-7, then practise isolate, hide, select-similar and end-isolate in the denser new-office-design.dwg without losing or deleting objects.
 
 ## You'll produce
 
-An edited EX-7 layout adjusted entirely with grips, plus fluent use of isolate/hide/end-isolate.
+An edited EX-7 layout plus a saved office-plan view in which the targeted object class was isolated, edited and fully restored.
 
 **Commands / tools:** Multi-functional grips, grip modes (Enter to cycle), Isolate/Hide Objects, Select Similar
 
@@ -43,21 +43,18 @@ An edited EX-7 layout adjusted entirely with grips, plus fluent use of isolate/h
    grip → Move → C (Copy)
    ```
 
-5. Right-click a feature: Isolate Objects → Isolate Selected, edit it, then End Isolation
+5. Open new-office-design.dwg, select one furniture object and use Select Similar
 
    ```
-   ISOLATEOBJECTS · UNISOLATEOBJECTS
+   OPEN new-office-design.dwg → select → right-click → Select Similar
    ```
 
-6. Use Select Similar to grab all matching objects and hide them temporarily
+6. Isolate the selection, make one grip edit, hide a second class, then restore everything
 
    ```
-   select → right-click → Select Similar → Hide
+   ISOLATEOBJECTS · HIDEOBJECTS · UNISOLATEOBJECTS
    ```
 
 ## Check your work
 
-You can stretch/move/rotate/copy with grips alone (no typed commands), and isolate then restore any subset of the drawing without losing objects.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*
+You can stretch, move, rotate and copy with grips alone; after UNISOLATEOBJECTS, the office drawing's object count and layer visibility match the starting state except for your saved edit.

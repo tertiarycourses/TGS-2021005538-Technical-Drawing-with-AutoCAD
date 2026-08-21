@@ -29,7 +29,7 @@ DOMAIN5 = [
              "radial, diameter, angular, continue and baseline — add multileader callouts, and create "
              "the part-list table from the Lab 11 balloon attributes.",
         build="A fully dimensioned EX-8 sheet with leader notes and a parts table (part no · description · qty).",
-        services="DIMSTYLE, DIM, DIMLINEAR/ALIGNED/RADIUS/DIAMETER/ANGULAR, DIMCONTINUE, DIMBASELINE, MLEADER, TABLE, DATAEXTRACTION",
+        services="DIMSTYLE, DIM, DLI/DAL/DRA/DDI/DAN, DCO/DBA, MLEADER, TABLE, DATAEXTRACTION",
         dwg="ex8.dwg",
         img="ex8.png",
         steps=[
@@ -48,10 +48,11 @@ DOMAIN5 = [
         num=15, topic=5,
         title="Hatching and Detail Finishing",
         objective="LO5 — produce design specification using AutoCAD (A5, K5)",
-        desc="Apply section hatching to the closed areas of a section view — pattern, scale and angle — "
-             "use gradient fills for presentation, and control hatch boundaries and islands.",
-        build="A section view with correct ANSI/ISO hatch patterns and a presentation-filled elevation.",
-        services="HATCH (pattern/scale/angle), gradient fills, boundary/island detection, HATCHEDIT",
+        desc="Apply section hatching with controlled boundaries and islands, then compare two supplied "
+             "landscaping revisions and mark the changed area with a revision cloud and note.",
+        build="A correctly hatched section view plus a documented landscaping revision showing the "
+              "changed geometry, revision cloud and concise change note.",
+        services="HATCH, gradient fills, boundary/island detection, HATCHEDIT, DWG Compare, REVCLOUD, MLEADER",
         dwg="ex3.dwg",
         steps=[
             ("Open a drawing with closed profiles (reuse ex3-mine.dwg) and identify the cut areas", ""),
@@ -60,22 +61,25 @@ DOMAIN5 = [
             ("Control islands: hatch around text and holes using island detection", "H → Settings → Island detection"),
             ("Apply a two-colour gradient fill to the elevation face for presentation", "GRADIENT → colours → pick area"),
             ("Edit an existing hatch's pattern and scale, then save", "HATCHEDIT → new scale"),
+            ("Compare landscaping-rev1.dwg with landscaping-rev2.dwg and isolate the changed geometry", "COMPARE → landscaping-rev2.dwg"),
+            ("Cloud the change and add a concise multileader note before saving the review copy", "REVCLOUD → MLEADER → SAVEAS landscaping-review.dwg"),
         ],
-        test="Hatches stay inside their boundaries (no bleed), adjacent parts hatch at different "
-             "angles, and text/holes remain unhatched islands.",
+        test="Hatches do not bleed, adjacent parts use distinct angles, islands remain clear, and the "
+             "landscaping review identifies every revision with one cloud and one readable note.",
     ),
     dict(
         num=16, topic=5,
         title="Layouts, Viewports and Plotting",
         objective="LO5 — produce drawings for submission to standards (A5, K5)",
-        desc="Compose an A3 layout: attach the title block, create scaled viewports (1:20 and a detail), "
-             "lock them, and plot the sheet to PDF — the standard submission output.",
-        build="A print-ready A3 layout with title block, two locked scaled viewports and a plotted PDF.",
+        desc="Audit the supplied new-office-layout.dwg, then compose an A3 layout with a title block, "
+             "locked scaled viewports and a standards-compliant PDF plot.",
+        build="A print-ready A3 office layout with two locked viewports, completed title information, "
+              "verified lineweights and a plotted PDF.",
         services="LAYOUT, PAGESETUP, MVIEW, viewport scale/lock, PLOT, DWG to PDF.pc3",
         dwg="title-block.dwg",
         steps=[
-            ("Open your annotated drawing, switch to a Layout tab and rename it A3-SHEET", "right-click tab → Rename"),
-            ("Set the page: DWG To PDF.pc3, ISO A3 (420×297), landscape, 1:1 plot scale", "PAGESETUP → Modify"),
+            ("Open new-office-layout.dwg, inspect its model/layout tabs and save a working copy", "OPEN new-office-layout.dwg → SAVEAS office-layout-mine.dwg"),
+            ("Rename the working layout A3-SHEET and set DWG To PDF.pc3, ISO A3 landscape, 1:1", "PAGESETUP → Modify"),
             ("Insert the title block on the layout at 0,0 in paper space", "I → title-block"),
             ("Create a main viewport and set its scale to 1:20 exactly, then lock it", "MV → drag → select → scale 1:20 → lock"),
             ("Add a second, smaller viewport for a detail at a larger scale", "MV → drag → scale 1:5"),

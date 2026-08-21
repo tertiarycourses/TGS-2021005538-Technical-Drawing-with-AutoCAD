@@ -15,7 +15,7 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 SOFFICE="${SOFFICE:-soffice}"
 
 # Resolve the course repo + short title from the single source (course_data.py).
-IFS=$'\t' read -r REPO SHORT <<< "$(python3 - "$HERE" <<'PY'
+IFS=$'\t' read -r REPO SHORT VERSION <<< "$(python3 - "$HERE" <<'PY'
 import os, sys
 here = sys.argv[1]; sys.path.insert(0, here)
 import course_data as C
@@ -27,32 +27,43 @@ def find_repo(start):
         d = os.path.dirname(d)
         if os.path.isdir(os.path.join(d,"courseware")) and os.path.isdir(os.path.join(d,"labs")): return d
     return os.path.dirname(os.path.dirname(start))
-print(find_repo(here) + "\t" + C.SHORT_TITLE)
+print(find_repo(here) + "\t" + C.SHORT_TITLE + "\t" + C.VERSION)
 PY
 )"
 CW="$REPO/courseware"
+
+render_pdf() {
+  local input="$1"
+  local output_dir="$2"
+  local profile
+  local expected="$output_dir/$(basename "${input%.*}").pdf"
+  profile="$(mktemp -d /tmp/autocad-lo-profile.XXXXXX)"
+  "$SOFFICE" --headless "-env:UserInstallation=file://$profile" \
+    --convert-to pdf --outdir "$output_dir" "$input" >/dev/null 2>&1
+  test -s "$expected" || { echo "ERROR: PDF render missing: $expected" >&2; return 1; }
+}
 
 echo "==> Generate PPT / LP / LG from the single source"
 python3 "$HERE/build_slides.py"
 python3 "$HERE/build_lesson_plan.py"
 python3 "$HERE/build_learner_guide.py"
 
-PPT="$(ls -t "$CW"/*.pptx | head -1)"
+PPT="$CW/$SHORT-$VERSION.pptx"
 LP="$CW/LP-$SHORT.docx"
 LG="$CW/LG-$SHORT.docx"
 
 echo "==> Render PDFs (pass 1)"
-"$SOFFICE" --headless --convert-to pdf --outdir "$CW" "$PPT" >/dev/null 2>&1
-"$SOFFICE" --headless --convert-to pdf --outdir "$CW" "$LP"  >/dev/null 2>&1
-"$SOFFICE" --headless --convert-to pdf --outdir "$CW" "$LG"  >/dev/null 2>&1
+render_pdf "$PPT" "$CW"
+render_pdf "$LP" "$CW"
+render_pdf "$LG" "$CW"
 
 echo "==> Inject page-numbered Table of Contents (LP + LG)"
 python3 "$HERE/inject_toc.py" "$LP" "${LP%.docx}.pdf" 2
 python3 "$HERE/inject_toc.py" "$LG" "${LG%.docx}.pdf" 2
 
 echo "==> Render PDFs (pass 2 — with built TOC)"
-"$SOFFICE" --headless --convert-to pdf --outdir "$CW" "$LP" >/dev/null 2>&1
-"$SOFFICE" --headless --convert-to pdf --outdir "$CW" "$LG" >/dev/null 2>&1
+render_pdf "$LP" "$CW"
+render_pdf "$LG" "$CW"
 
 echo "==> Done. Artifacts in courseware/:"
 ls -1 "$CW"/*.pptx "$CW"/*.docx "$CW"/*.pdf

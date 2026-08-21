@@ -6,13 +6,13 @@
 
 ## Goal
 
-Apply section hatching to the closed areas of a section view — pattern, scale and angle — use gradient fills for presentation, and control hatch boundaries and islands.
+Apply section hatching with controlled boundaries and islands, then compare two supplied landscaping revisions and mark the changed area with a revision cloud and note.
 
 ## You'll produce
 
-A section view with correct ANSI/ISO hatch patterns and a presentation-filled elevation.
+A correctly hatched section view plus a documented landscaping revision showing the changed geometry, revision cloud and concise change note.
 
-**Commands / tools:** HATCH (pattern/scale/angle), gradient fills, boundary/island detection, HATCHEDIT
+**Commands / tools:** HATCH, gradient fills, boundary/island detection, HATCHEDIT, DWG Compare, REVCLOUD, MLEADER
 
 ## Files in this lab
 
@@ -55,9 +55,18 @@ A section view with correct ANSI/ISO hatch patterns and a presentation-filled el
    HATCHEDIT → new scale
    ```
 
+7. Compare landscaping-rev1.dwg with landscaping-rev2.dwg and isolate the changed geometry
+
+   ```
+   COMPARE → landscaping-rev2.dwg
+   ```
+
+8. Cloud the change and add a concise multileader note before saving the review copy
+
+   ```
+   REVCLOUD → MLEADER → SAVEAS landscaping-review.dwg
+   ```
+
 ## Check your work
 
-Hatches stay inside their boundaries (no bleed), adjacent parts hatch at different angles, and text/holes remain unhatched islands.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*
+Hatches do not bleed, adjacent parts use distinct angles, islands remain clear, and the landscaping review identifies every revision with one cloud and one readable note.

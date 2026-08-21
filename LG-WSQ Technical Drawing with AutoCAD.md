@@ -1,6 +1,6 @@
 # WSQ Technical Drawing with AutoCAD — Learner Guide
 
-**WSQ Course Code:** TGS-2021005538  |  **Conducted by:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)  |  **Version v12 · 18 August 2026**
+**WSQ Course Code:** TGS-2021005538  |  **Conducted by:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)  |  **Version v13 · 21 August 2026**
 
 ## Contents
 
@@ -92,11 +92,11 @@ AutoCAD User Interface · Workspace Settings · Navigation · Units
 
 Objective: LO1 — read and visualize AutoCAD technical drawings; set up a drawing environment (A1, K1).
 
-Goal: Create a new metric drawing from the ACADISO template, choose the Drafting & Annotation workspace, set units and limits, then open a finished drawing and practise reading it with the zoom, pan and ViewCube navigation tools.
+Goal: Create and verify a metric drawing environment, compare saved workspace and drafting-setting examples, then open a finished drawing and practise reading it with zoom, pan and ViewCube.
 
 **You'll produce**
 
-A correctly configured metric drawing (units, limits, workspace) saved as DWG, plus confident navigation of an existing technical drawing.   (Commands: ACADISO template, UNITS, LIMITS, ZOOM, PAN, ViewCube.)
+A correctly configured metric drawing saved as DWG, a settings audit, and confident navigation of an existing technical drawing.   (Commands: ACADISO template, UNITS, LIMITS, DSETTINGS, WSCURRENT, ZOOM, PAN, ViewCube.)
 
 **Step-by-step**
 
@@ -106,16 +106,16 @@ A correctly configured metric drawing (units, limits, workspace) saved as DWG, p
    NEW → acadiso.dwt
    ```
 
-2. Switch the workspace to Drafting & Annotation from the status bar gear icon
+2. Open workspaces.dwg, compare the available workspaces, then switch to Drafting & Annotation
 
    ```
-   WSCURRENT → Drafting & Annotation
+   OPEN workspaces.dwg → WSCURRENT → Drafting & Annotation
    ```
 
-3. Set decimal length units with 0.00 precision and decimal degrees for angles
+3. Set decimal millimetres with 0.00 precision and decimal degrees for angles
 
    ```
-   UNITS → Length: Decimal, Precision 0.00
+   UNITS → Insertion scale: Millimetres → Length: Decimal, 0.00
    ```
 
 4. Frame an A3-sized working area with drawing limits, then zoom to it
@@ -124,10 +124,10 @@ A correctly configured metric drawing (units, limits, workspace) saved as DWG, p
    LIMITS → 0,0 → 420,297  |  ZOOM → All
    ```
 
-5. Toggle the precision aids on the status bar: grid, snap, ortho, polar and object snap
+5. Open drafting-settings.dwg and audit grid, snap, ortho, polar and object-snap settings
 
    ```
-   F7 grid · F9 snap · F8 ortho · F10 polar · F3 osnap
+   OPEN drafting-settings.dwg → DSETTINGS · F7 · F9 · F8 · F10 · F3
    ```
 
 6. Open lab01-table.dwg and navigate it: wheel-zoom, pan, zoom window and zoom extents
@@ -145,7 +145,7 @@ A correctly configured metric drawing (units, limits, workspace) saved as DWG, p
 
 **Check your work**
 
-You can state the drawing's units, limits and workspace; zoom to any detail of lab01-table.dwg and back to extents; and your lab01-setup.dwg opens with the settings intact.
+INSUNITS reports millimetres, limits are 420 × 297, Drafting & Annotation is current, the precision-aid audit is complete, and lab01-setup.dwg reopens with the settings intact.
 
 > **Note:** This lab's data files and printable instructions are in labs/lab-01-setting-up-a-new-drawing/.
 
@@ -526,7 +526,7 @@ No overshooting or dangling segments remain (zoom around the whole profile), and
 
 Objective: LO2/LO3 — reproduce patterned and symmetric geometry (A3, K3).
 
-Goal: Produce practice drawing EX-6 by drawing half of the symmetric design and mirroring it, then distributing the hole pattern with rectangular and polar arrays, and adjusting sizes with STRETCH and SCALE.
+Goal: Produce practice drawing EX-6 with mirror, stretch, scale and arrays, then inspect the supplied sawblade drawing to reverse-engineer a production polar-array pattern.
 
 ![Lab 8 — the drawing you'll produce](labs/lab-08-mirror-stretch-scale-and-arrays/ex6.png)
 
@@ -534,7 +534,7 @@ Goal: Produce practice drawing EX-6 by drawing half of the symmetric design and 
 
 **You'll produce**
 
-The completed EX-6 drawing with its symmetric outline and evenly arrayed hole pattern.   (Commands: MIRROR, STRETCH (crossing window), SCALE (Reference), ARRAYRECT, ARRAYPOLAR.)
+The completed EX-6 drawing plus a verified sawblade polar array with the correct centre, item count, fill angle and associative state.   (Commands: MIRROR, STRETCH (crossing window), SCALE (Reference), ARRAYRECT, ARRAYPOLAR.)
 
 **Step-by-step**
 
@@ -551,10 +551,10 @@ The completed EX-6 drawing with its symmetric outline and evenly arrayed hole pa
    AR → R → rows/cols/spacing
    ```
 
-4. Distribute the bolt holes around the centre with a polar array
+4. Distribute the bolt holes around the centre with an associative polar array
 
    ```
-   AR → PO → centre → items → 360
+   AR → PO → centre → items → 360 → Associative: Yes
    ```
 
 5. Stretch the slot to its dimensioned length with a crossing window, scale a feature with Reference
@@ -563,7 +563,13 @@ The completed EX-6 drawing with its symmetric outline and evenly arrayed hole pa
    S → crossing → base → distance  ·  SC → R
    ```
 
-6. Verify against ex6.dwg and save
+6. Open sawblade.dwg, select its tooth array and record centre, item count, fill angle and associativity
+
+   ```
+   OPEN sawblade.dwg → select array → PR
+   ```
+
+7. Verify against ex6.dwg and save
 
    ```
    SAVEAS ex6-mine.dwg
@@ -572,7 +578,7 @@ The completed EX-6 drawing with its symmetric outline and evenly arrayed hole pa
 
 **Check your work**
 
-The two halves are perfectly symmetric about the centreline, array counts and spacings match the sheet, and the stretched slot measures the dimensioned length.
+The two halves are symmetric, array counts and spacings match the sheet, the slot length is correct, and you can explain the four defining properties of the sawblade polar array.
 
 > **Note:** This lab's data files and printable instructions are in labs/lab-08-mirror-stretch-scale-and-arrays/.
 
@@ -597,11 +603,11 @@ Object Properties · Layers · Blocks, Attributes & Reusable Content
 
 Objective: LO3/LO4 — organise a drawing with layers and properties (A4, K4).
 
-Goal: Open the furniture drawing lab-table-lesson2.dwg, create a layer scheme (outline, hidden, centre, dimensions, text), assign colours/linetypes/lineweights ByLayer, and move the existing objects onto the correct layers.
+Goal: Create a standards-based layer scheme in lab-table-lesson2.dwg, then audit the supplied office-plan-ground-floor.dwg to see how a larger architectural drawing separates systems.
 
 **You'll produce**
 
-A layered version of the table drawing where every object's colour and linetype come ByLayer.   (Commands: LAYER (LA), Properties palette (PR), Layer Walk, MATCHPROP, freeze/thaw, lock.)
+A layered table drawing where every object is ByLayer, plus a five-layer audit of the office plan covering naming, colour, linetype, lineweight and plot state.   (Commands: LAYER (LA), Properties palette (PR), Layer Walk, MATCHPROP, freeze/thaw, lock.)
 
 **Step-by-step**
 
@@ -641,10 +647,16 @@ A layered version of the table drawing where every object's colour and linetype 
    SETBYLAYER → SAVEAS table-layers.dwg
    ```
 
+7. Open office-plan-ground-floor.dwg and audit five functional layers against the same rules
+
+   ```
+   OPEN office-plan-ground-floor.dwg → LA → record name/colour/linetype/lineweight/plot
+   ```
+
 
 **Check your work**
 
-Turning each layer off hides exactly its objects, everything reports ByLayer in the Properties palette, and Layer Walk steps cleanly through the scheme.
+Turning each layer off hides exactly its objects, everything in table-layers.dwg reports ByLayer, and the office-plan audit identifies five layers with their intended functions.
 
 > **Note:** This lab's data files and printable instructions are in labs/lab-09-object-properties-and-layers/.
 
@@ -655,7 +667,7 @@ Turning each layer off hides exactly its objects, everything reports ByLayer in 
 
 Objective: LO3/LO4 — edit and manage drawing objects directly (A4, K4).
 
-Goal: Use multi-functional grips on practice drawing EX-7 to stretch, move, copy and rotate features without commands, and manage a busy view with Isolate and Hide Selected Objects.
+Goal: Use multi-functional grips on EX-7, then practise isolate, hide, select-similar and end-isolate in the denser new-office-design.dwg without losing or deleting objects.
 
 ![Lab 10 — the drawing you'll produce](labs/lab-10-grips-hide-and-isolate/ex7.png)
 
@@ -663,7 +675,7 @@ Goal: Use multi-functional grips on practice drawing EX-7 to stretch, move, copy
 
 **You'll produce**
 
-An edited EX-7 layout adjusted entirely with grips, plus fluent use of isolate/hide/end-isolate.   (Commands: Multi-functional grips, grip modes (Enter to cycle), Isolate/Hide Objects, Select Similar.)
+An edited EX-7 layout plus a saved office-plan view in which the targeted object class was isolated, edited and fully restored.   (Commands: Multi-functional grips, grip modes (Enter to cycle), Isolate/Hide Objects, Select Similar.)
 
 **Step-by-step**
 
@@ -686,22 +698,22 @@ An edited EX-7 layout adjusted entirely with grips, plus fluent use of isolate/h
    grip → Move → C (Copy)
    ```
 
-5. Right-click a feature: Isolate Objects → Isolate Selected, edit it, then End Isolation
+5. Open new-office-design.dwg, select one furniture object and use Select Similar
 
    ```
-   ISOLATEOBJECTS · UNISOLATEOBJECTS
+   OPEN new-office-design.dwg → select → right-click → Select Similar
    ```
 
-6. Use Select Similar to grab all matching objects and hide them temporarily
+6. Isolate the selection, make one grip edit, hide a second class, then restore everything
 
    ```
-   select → right-click → Select Similar → Hide
+   ISOLATEOBJECTS · HIDEOBJECTS · UNISOLATEOBJECTS
    ```
 
 
 **Check your work**
 
-You can stretch/move/rotate/copy with grips alone (no typed commands), and isolate then restore any subset of the drawing without losing objects.
+You can stretch, move, rotate and copy with grips alone; after UNISOLATEOBJECTS, the office drawing's object count and layer visibility match the starting state except for your saved edit.
 
 > **Note:** This lab's data files and printable instructions are in labs/lab-10-grips-hide-and-isolate/.
 
@@ -712,54 +724,60 @@ You can stretch/move/rotate/copy with grips alone (no typed commands), and isola
 
 Objective: LO3 — create part lists using AutoCAD (A4, K4).
 
-Goal: Define a reusable part-tag block with attributes (part number, description, quantity) in the title-block drawing, insert it against each component, and prepare the attribute data that will feed the part list.
+Goal: Inspect a reusable block library and a drawing containing dynamic blocks, then define a part-tag block with attributes and prepare its data for the part list.
 
 **You'll produce**
 
-A BALLOON block with PART_NO / DESC / QTY attributes, inserted and filled in for each part.   (Commands: BLOCK, ATTDEF, INSERT, ATTEDIT, groups, DATAEXTRACTION (preview).)
+A BALLOON block with PART_NO / DESC / QTY attributes, plus evidence that one library block and one dynamic-block state can be inserted and edited correctly.   (Commands: BLOCK, WBLOCK, DesignCenter, ATTDEF, INSERT, ATTEDIT, dynamic-block grips, DATAEXTRACTION.)
 
 **Step-by-step**
 
-1. Open title-block.dwg and draw the balloon symbol (circle + leader stub)
+1. Open architecture-library.dwg in DesignCenter and insert one reusable symbol into a new drawing
+
+   ```
+   ADCENTER → Folders → architecture-library.dwg → Blocks → Insert
+   ```
+
+2. Open new-office-dynamic-blocks.dwg and change one dynamic block's grip or visibility state
+
+   ```
+   OPEN new-office-dynamic-blocks.dwg → select dynamic block → grip / Properties
+   ```
+
+3. Open title-block.dwg and draw the balloon symbol (circle + leader stub)
 
    ```
    C → radius 5
    ```
 
-2. Define attributes PART_NO, DESC and QTY with prompts and default values
+4. Define attributes PART_NO, DESC and QTY with prompts and default values
 
    ```
    ATTDEF → tag/prompt/default
    ```
 
-3. Create the block BALLOON from the circle plus its attribute definitions
+5. Create the block BALLOON from the circle plus its attribute definitions
 
    ```
    B → name BALLOON → select objects
    ```
 
-4. Insert the balloon against each component and fill in the attribute values
+6. Insert the balloon against each component and fill in the attribute values
 
    ```
    I → BALLOON → answer prompts
    ```
 
-5. Double-click a balloon to edit its attributes; group related parts together
+7. Edit one balloon attribute, then preview the data extraction used by the Lab 14 part list
 
    ```
-   ATTEDIT / EATTEDIT · GROUP
-   ```
-
-6. Preview extracting the attribute data — this becomes the part list in Lab 14
-
-   ```
-   DATAEXTRACTION
+   ATTEDIT / EATTEDIT → DATAEXTRACTION
    ```
 
 
 **Check your work**
 
-Each inserted balloon prompts for and displays its own part number, description and quantity, and Data Extraction lists one row per balloon with the values you entered.
+The library block inserts at the correct scale, the dynamic state changes without exploding, and Data Extraction lists one row per BALLOON with the values you entered.
 
 > **Note:** This lab's data files and printable instructions are in labs/lab-11-blocks-attributes-and-part-lists/.
 
@@ -770,36 +788,36 @@ Each inserted balloon prompts for and displays its own part number, description 
 
 Objective: LO4 — assemble drawings from shared reference content (A4, K4).
 
-Goal: Attach the title-block drawing as an external reference under the table drawing, observe how xref updates flow through, then attach a PDF as an underlay and import PDF geometry.
+Goal: Repair and verify the relative Landscaping_REV1 Xref in the supplied office-layout host, then attach a title block and a PDF underlay and import vector geometry.
 
 **You'll produce**
 
-A host drawing with a live xref title block and a PDF underlay ready for tracing.   (Commands: XREF/ATTACH, External References palette, PDFATTACH, PDFIMPORT.)
+A host drawing whose landscaping Xref resolves from the lab folder, with an additional live title-block Xref and an imported PDF geometry sample.   (Commands: XREF/ATTACH, External References palette, PDFATTACH, PDFIMPORT.)
 
 **Step-by-step**
 
-1. Open your layered table drawing from Lab 9 as the host drawing
+1. Keep new-office-layout-with-xref.dwg and Landscaping_REV1.dwg together, then open the host
 
    ```
-   OPEN table-layers.dwg
+   OPEN new-office-layout-with-xref.dwg
    ```
 
-2. Attach title-block.dwg as an Xref at 0,0, scale 1
+2. Open External References and confirm Landscaping_REV1 is Found using a relative path
+
+   ```
+   XR → Landscaping_REV1 → Saved Path: .\Landscaping_REV1.dwg
+   ```
+
+3. If unresolved, select a new path in the current lab folder, reload, and retain a relative path
+
+   ```
+   XR → Change Path → Select New Path → Reload
+   ```
+
+4. Attach title-block.dwg as an additional Xref at 0,0, scale 1
 
    ```
    XATTACH → title-block.dwg
-   ```
-
-3. Open the External References palette and note the xref's status and path
-
-   ```
-   XR (External References)
-   ```
-
-4. Edit the title block in its own file, save, and reload the xref in the host
-
-   ```
-   XR → right-click → Reload
    ```
 
 5. Attach the supplied drawing-sheet PDF as an underlay and snap to its geometry
@@ -817,7 +835,7 @@ A host drawing with a live xref title block and a PDF underlay ready for tracing
 
 **Check your work**
 
-Changing the title block file and reloading updates the host without copying geometry, and PDFIMPORT produces editable AutoCAD objects from the underlay.
+Both Xrefs show Loaded, Landscaping_REV1 uses a relative path and survives reopening the folder elsewhere, while PDFIMPORT produces editable AutoCAD objects from the underlay.
 
 > **Note:** This lab's data files and printable instructions are in labs/lab-12-external-references-and-pdf-import/.
 
@@ -908,7 +926,7 @@ Goal: Fully dimension practice drawing EX-8 with a metric dimension style — li
 
 **You'll produce**
 
-A fully dimensioned EX-8 sheet with leader notes and a parts table (part no · description · qty).   (Commands: DIMSTYLE, DIM, DIMLINEAR/ALIGNED/RADIUS/DIAMETER/ANGULAR, DIMCONTINUE, DIMBASELINE, MLEADER, TABLE, DATAEXTRACTION.)
+A fully dimensioned EX-8 sheet with leader notes and a parts table (part no · description · qty).   (Commands: DIMSTYLE, DIM, DLI/DAL/DRA/DDI/DAN, DCO/DBA, MLEADER, TABLE, DATAEXTRACTION.)
 
 **Step-by-step**
 
@@ -968,11 +986,11 @@ Every dimension on the EX-8 sheet is reproduced with the MECH-25 style (no overr
 
 Objective: LO5 — produce design specification using AutoCAD (A5, K5).
 
-Goal: Apply section hatching to the closed areas of a section view — pattern, scale and angle — use gradient fills for presentation, and control hatch boundaries and islands.
+Goal: Apply section hatching with controlled boundaries and islands, then compare two supplied landscaping revisions and mark the changed area with a revision cloud and note.
 
 **You'll produce**
 
-A section view with correct ANSI/ISO hatch patterns and a presentation-filled elevation.   (Commands: HATCH (pattern/scale/angle), gradient fills, boundary/island detection, HATCHEDIT.)
+A correctly hatched section view plus a documented landscaping revision showing the changed geometry, revision cloud and concise change note.   (Commands: HATCH, gradient fills, boundary/island detection, HATCHEDIT, DWG Compare, REVCLOUD, MLEADER.)
 
 **Step-by-step**
 
@@ -1007,10 +1025,22 @@ A section view with correct ANSI/ISO hatch patterns and a presentation-filled el
    HATCHEDIT → new scale
    ```
 
+7. Compare landscaping-rev1.dwg with landscaping-rev2.dwg and isolate the changed geometry
+
+   ```
+   COMPARE → landscaping-rev2.dwg
+   ```
+
+8. Cloud the change and add a concise multileader note before saving the review copy
+
+   ```
+   REVCLOUD → MLEADER → SAVEAS landscaping-review.dwg
+   ```
+
 
 **Check your work**
 
-Hatches stay inside their boundaries (no bleed), adjacent parts hatch at different angles, and text/holes remain unhatched islands.
+Hatches do not bleed, adjacent parts use distinct angles, islands remain clear, and the landscaping review identifies every revision with one cloud and one readable note.
 
 > **Note:** This lab's data files and printable instructions are in labs/lab-15-hatching-and-detail-finishing/.
 
@@ -1021,21 +1051,21 @@ Hatches stay inside their boundaries (no bleed), adjacent parts hatch at differe
 
 Objective: LO5 — produce drawings for submission to standards (A5, K5).
 
-Goal: Compose an A3 layout: attach the title block, create scaled viewports (1:20 and a detail), lock them, and plot the sheet to PDF — the standard submission output.
+Goal: Audit the supplied new-office-layout.dwg, then compose an A3 layout with a title block, locked scaled viewports and a standards-compliant PDF plot.
 
 **You'll produce**
 
-A print-ready A3 layout with title block, two locked scaled viewports and a plotted PDF.   (Commands: LAYOUT, PAGESETUP, MVIEW, viewport scale/lock, PLOT, DWG to PDF.pc3.)
+A print-ready A3 office layout with two locked viewports, completed title information, verified lineweights and a plotted PDF.   (Commands: LAYOUT, PAGESETUP, MVIEW, viewport scale/lock, PLOT, DWG to PDF.pc3.)
 
 **Step-by-step**
 
-1. Open your annotated drawing, switch to a Layout tab and rename it A3-SHEET
+1. Open new-office-layout.dwg, inspect its model/layout tabs and save a working copy
 
    ```
-   right-click tab → Rename
+   OPEN new-office-layout.dwg → SAVEAS office-layout-mine.dwg
    ```
 
-2. Set the page: DWG To PDF.pc3, ISO A3 (420×297), landscape, 1:1 plot scale
+2. Rename the working layout A3-SHEET and set DWG To PDF.pc3, ISO A3 landscape, 1:1
 
    ```
    PAGESETUP → Modify
@@ -1093,7 +1123,6 @@ These conventions (K1/K3) apply across every lab and are assessed in the written
 - Second pass: redo Labs 2–8 from just the drawing-sheet PDFs, without the step-by-step instructions.
 - Review the Key Concepts bullets of each topic — the written assessment (SAQ) draws on them.
 - The practical performance asks you to produce a dimensioned technical drawing end-to-end: set up, draw, modify, organise with layers, dimension, and plot — Labs 2, 7, 9, 14 and 16 cover that chain.
-- Sharpen your readiness with the Tertiary Infotech AutoCAD practice exam: https://exams.tertiaryinfotech.com/practice-exams/autodesk/autocad
 - Course materials, assessment submission and your certificate are on the LMS: https://lms-tms.tertiaryinfotech.com
 
 

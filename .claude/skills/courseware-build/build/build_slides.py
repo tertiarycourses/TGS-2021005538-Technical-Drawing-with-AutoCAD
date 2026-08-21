@@ -4,7 +4,7 @@
 
 Design helpers are the same set used by the tertiary-course-slides skill
 (cover, section, content, two_col, cards3, big_statement, tile_grid, flow_h,
-trainer_slide, step slides). Content is driven entirely by course_data.py +
+trainer_slide and lab briefing/verification slides). Content is driven entirely by course_data.py +
 data_domainN.py + data_concepts.py so the deck stays 100% aligned with the LP,
 LG and labs. Legacy graphics come from reference/ppt_media (extracted from the
 v11 master deck).
@@ -152,13 +152,13 @@ def section(kicker,title,n,sub=""):
     footer(s)
 def content(title,items,kicker=None,size=20):
     s=head(slide(),title,kicker); bullets(s,Inches(0.85),Inches(1.95),Inches(11.6),Inches(4.9),items,size=size); footer(s); return s
-def two_col(title,left,right,kicker=None,lhead="",rhead=""):
+def two_col(title,left,right,kicker=None,lhead="",rhead="",size=16):
     s=head(slide(),title,kicker)
     rect(s,Inches(0.85),Inches(1.95),Inches(5.7),Inches(4.7),LIGHT); rect(s,Inches(6.95),Inches(1.95),Inches(5.55),Inches(4.7),LIGHT)
     if lhead: txt(s,Inches(1.1),Inches(2.15),Inches(5.2),Inches(0.4),[[(lhead,16,BLUE,True)]])
     if rhead: txt(s,Inches(7.2),Inches(2.15),Inches(5.0),Inches(0.4),[[(rhead,16,TEAL,True)]])
-    bullets(s,Inches(1.1),Inches(2.7),Inches(5.2),Inches(3.8),left,size=16)
-    bullets(s,Inches(7.2),Inches(2.7),Inches(5.05),Inches(3.8),right,size=16,mcolor=TEAL); footer(s); return s
+    bullets(s,Inches(1.1),Inches(2.7),Inches(5.2),Inches(3.8),left,size=size)
+    bullets(s,Inches(7.2),Inches(2.7),Inches(5.05),Inches(3.8),right,size=size,mcolor=TEAL); footer(s); return s
 def cards3(title,cards,kicker):
     s=head(slide(),title,kicker); xs=[Inches(0.85),Inches(5.0),Inches(9.15)]
     for i,c in enumerate(cards[:3]):
@@ -320,10 +320,10 @@ content("Digital Attendance (Mandatory)",[
  "The trainer/administrator displays the digital attendance QR code from the SSG portal.",
  "Scan the QR code with your mobile phone camera and submit your attendance.",
  "A minimum of 75% attendance is required to be eligible for assessment and funding."],kicker="TRAQOM · SSG DIGITAL ATTENDANCE")
-trainer_slide("YOUR TRAINER · GENERAL","Your Trainer","General Trainer template —\nto be completed by the trainer",
+trainer_slide("YOUR TRAINER · TEMPLATE","Trainer Profile Template","Complete before delivery",
  [("Name",""),("Title / Designation",""),("Qualifications",""),
   ("Areas of expertise",""),("Training & industry experience",""),("Contact","")],
- initials="?",accent=GREY)
+ initials="TP",accent=GREY)
 trainer_slide("YOUR TRAINER",C.TRAINER,"Principal Trainer\nTertiary Infotech Academy Pte Ltd",
  [("Role","Principal Trainer, Tertiary Infotech Academy Pte Ltd"),
   ("Specialisation","CAD, technical drawing and engineering design — AutoCAD, Revit and Fusion 360."),
@@ -373,7 +373,7 @@ tile_grid("Skills Framework — TSC",[
 two_col("TSC Abilities & Knowledge",
  [(a,0) for a in C.TSC_ABILITIES],
  [(k,0) for k in C.TSC_KNOWLEDGE],
- kicker="SKILLS FRAMEWORK TSC",lhead="Abilities",rhead="Knowledge")
+ kicker="SKILLS FRAMEWORK TSC",lhead="Abilities",rhead="Knowledge",size=13)
 mark("outcomes")
 tile_grid("Learning Outcomes",[
  ("LO1 — Read","Read and visualize AutoCAD technical drawings."),
@@ -437,9 +437,11 @@ for t in C.TOPICS:
         render_concept(cdef)
     acts=TOPIC_ACTS[t["num"]]
     if len(acts)>=2:
-        third=(len(acts)+2)//3
-        groups=[acts[i:i+third] for i in range(0,len(acts),third)][:3]
-        while len(groups)<3: groups.append([])
+        sizes=[len(acts)//3 + (1 if i < len(acts)%3 else 0) for i in range(3)]
+        groups=[]; start=0
+        for count in sizes:
+            if count:
+                groups.append(acts[start:start+count]); start+=count
         cards=[]
         for gi,g in enumerate(groups):
             cards.append((CARD_COLORS[gi], f"Labs {g[0]['num']}–{g[-1]['num']}" if len(g)>1 else (f"Lab {g[0]['num']}" if g else "—"),
@@ -451,11 +453,7 @@ for t in C.TOPICS:
         activity_overview(f"LAB {a['num']}", a["title"], a["desc"], a["build"], a["services"],
                           kicker=f"TOPIC {t['code']} · HANDS-ON",
                           img=(f"{_dir}/{a['img']}" if a.get("img") else None),
-                          dwg=(f"{_dir}/{a['dwg']}" if a.get("dwg") else None))
-        steps=a["steps"]; total=len(steps)
-        for ci in range(0,total,3):
-            chunk=steps[ci:ci+3]
-            steps_slide(f"LAB {a['num']} · STEP-BY-STEP", a["title"], chunk, ci+1, total)
+                          dwg=(a["dwg"] if a.get("dwg") else None))
         test_slide(a["title"], a["test"], kicker=f"LAB {a['num']} · VERIFY")
     tile_grid(f"Recap — {t['title']}",
               [(f"Lab {a['num']} — {a['title']}", a["build"]) for a in acts],
@@ -471,21 +469,6 @@ tile_grid("What You Achieved",[
  ("Organizing objects","Structured drawings with layers, blocks, attributes and external references."),
  ("Design documentation","Dimensioned, annotated, tabulated part lists and plotted submission-ready sheets.")],
  kicker="LEARNING OUTCOMES",cols=2,size=14)
-mark("practice_exam")
-s=head(slide(),"Practice Exam","TEST YOURSELF · EXAMS.TERTIARYINFOTECH.COM")
-bullets(s,Inches(0.85),Inches(2.0),Inches(6.2),Inches(4.5),[
- "Sharpen your readiness with the Tertiary Infotech AutoCAD practice exam.",
- "Go to exams.tertiaryinfotech.com → Practice Exams → Autodesk → AutoCAD.",
- "Attempt it under timed conditions and review every explanation.",
- "Revisit any lab whose topic you miss, then re-take the practice exam."],size=15,gap=10)
-rect(s,Inches(7.3),Inches(2.1),Inches(5.2),Inches(4.4),LIGHT)
-rect(s,Inches(7.3),Inches(2.1),Inches(5.2),Inches(0.12),VIOLET)
-oval(s,Inches(9.3),Inches(2.7),Inches(1.2),Inches(1.2),VIOLET)
-txt(s,Inches(9.3),Inches(2.7),Inches(1.2),Inches(1.2),[[("✓",40,WHITE,True)]],align=PP_ALIGN.CENTER,anchor=MSO_ANCHOR.MIDDLE)
-txt(s,Inches(7.5),Inches(4.1),Inches(4.8),Inches(0.6),[[("AutoCAD Practice Exam",20,INK,True)]],align=PP_ALIGN.CENTER)
-txt(s,Inches(7.5),Inches(4.7),Inches(4.8),Inches(1.4),[[("exams.tertiaryinfotech.com",15,VIOLET,True)],
-    [("Timed questions with explanations,\nmapped to the five course topics",13,GREY,False)]],align=PP_ALIGN.CENTER,space=6)
-footer(s)
 tile_grid("Recommended Next Courses",[(rc.replace("WSQ - ",""),"WSQ · Tertiary Infotech Academy") for rc in C.RECOMMENDED_COURSES],
  kicker="KEEP LEARNING",cols=2,size=14)
 content("Support",[

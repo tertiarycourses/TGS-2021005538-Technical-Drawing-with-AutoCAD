@@ -8,6 +8,8 @@
 
 # Distribution archives (rebuildable — never pushed to GitHub)
 *.zip
+courseware/archive/
+tmp/
 
 # Source material the project was derived from — not ours to republish.
 **/reference/

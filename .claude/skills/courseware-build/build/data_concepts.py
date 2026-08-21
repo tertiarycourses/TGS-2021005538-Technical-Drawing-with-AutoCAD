@@ -86,7 +86,7 @@ CONCEPTS = {
         "Click a face, edge or corner to jump to that view; drag to orbit freely.",
         "Set Current View as Home to return to a saved orientation.",
         "In 2D drafting you will mostly stay on the Top view."],
-      image=M+"s034_3.png"),
+      image=".claude/skills/courseware-build/assets/viewcube-contrast.png"),
  dict(type="img", title="Drawing Units and Converting Units",
       kicker="SETUP",
       bullets=[

@@ -57,6 +57,3 @@ A flat isometric drawing of the 3D object — edges on the three isoplanes plus 
 ## Check your work
 
 Each face lies on the correct isoplane (edges at 30°/90°/150°), the isocircles read as ellipses aligned to their faces, and the drawing matches the supplied object's proportions.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*

@@ -57,6 +57,3 @@ The completed EX-2 drawing with all holes, rectangles and polygons placed to the
 ## Check your work
 
 Every circle's centre and radius match the sheet (use LIST), the hexagon has 6 equal sides, and your drawing overlays ex2.dwg cleanly.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*

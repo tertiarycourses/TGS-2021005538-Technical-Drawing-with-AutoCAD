@@ -47,10 +47,10 @@ DOMAIN3 = [
         num=8, topic=3,
         title="Mirror, Stretch, Scale and Arrays",
         objective="LO2/LO3 — reproduce patterned and symmetric geometry (A3, K3)",
-        desc="Produce practice drawing EX-6 by drawing half of the symmetric design and mirroring it, "
-             "then distributing the hole pattern with rectangular and polar arrays, and adjusting sizes "
-             "with STRETCH and SCALE.",
-        build="The completed EX-6 drawing with its symmetric outline and evenly arrayed hole pattern.",
+        desc="Produce practice drawing EX-6 with mirror, stretch, scale and arrays, then inspect the "
+             "supplied sawblade drawing to reverse-engineer a production polar-array pattern.",
+        build="The completed EX-6 drawing plus a verified sawblade polar array with the correct centre, "
+              "item count, fill angle and associative state.",
         services="MIRROR, STRETCH (crossing window), SCALE (Reference), ARRAYRECT, ARRAYPOLAR",
         dwg="ex6.dwg",
         img="ex6.png",
@@ -58,11 +58,12 @@ DOMAIN3 = [
             ("Open the EX-6 sheet (ex6-drawing-sheet.pdf) and find its axis of symmetry", ""),
             ("Draw one half of the outline, then mirror it across the centreline", "MI → select → axis pt1 → pt2 → N"),
             ("Array one hole into the rectangular pattern (rows, columns, spacing from the sheet)", "AR → R → rows/cols/spacing"),
-            ("Distribute the bolt holes around the centre with a polar array", "AR → PO → centre → items → 360"),
+            ("Distribute the bolt holes around the centre with an associative polar array", "AR → PO → centre → items → 360 → Associative: Yes"),
             ("Stretch the slot to its dimensioned length with a crossing window, scale a feature with Reference", "S → crossing → base → distance  ·  SC → R"),
+            ("Open sawblade.dwg, select its tooth array and record centre, item count, fill angle and associativity", "OPEN sawblade.dwg → select array → PR"),
             ("Verify against ex6.dwg and save", "SAVEAS ex6-mine.dwg"),
         ],
-        test="The two halves are perfectly symmetric about the centreline, array counts and spacings "
-             "match the sheet, and the stretched slot measures the dimensioned length.",
+        test="The two halves are symmetric, array counts and spacings match the sheet, the slot length "
+             "is correct, and you can explain the four defining properties of the sawblade polar array.",
     ),
 ]

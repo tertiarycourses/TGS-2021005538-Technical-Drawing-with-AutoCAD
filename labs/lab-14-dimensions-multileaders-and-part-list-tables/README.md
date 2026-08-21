@@ -12,7 +12,7 @@ Fully dimension practice drawing EX-8 with a metric dimension style — linear, 
 
 A fully dimensioned EX-8 sheet with leader notes and a parts table (part no · description · qty).
 
-**Commands / tools:** DIMSTYLE, DIM, DIMLINEAR/ALIGNED/RADIUS/DIAMETER/ANGULAR, DIMCONTINUE, DIMBASELINE, MLEADER, TABLE, DATAEXTRACTION
+**Commands / tools:** DIMSTYLE, DIM, DLI/DAL/DRA/DDI/DAN, DCO/DBA, MLEADER, TABLE, DATAEXTRACTION
 
 ## Files in this lab
 
@@ -67,6 +67,3 @@ A fully dimensioned EX-8 sheet with leader notes and a parts table (part no · d
 ## Check your work
 
 Every dimension on the EX-8 sheet is reproduced with the MECH-25 style (no overridden text), leaders land neatly, and the table rows match the balloons one-for-one.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*

@@ -57,6 +57,3 @@ The completed EX-1 profile drawn to size, matching the supplied solution DWG.
 ## Check your work
 
 Your outline closes exactly (LIST shows the final vertex at 0,0) and overlays the solution ex1.dwg with no visible deviation.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*

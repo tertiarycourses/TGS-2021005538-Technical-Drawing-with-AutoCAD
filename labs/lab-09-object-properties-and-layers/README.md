@@ -6,11 +6,11 @@
 
 ## Goal
 
-Open the furniture drawing lab-table-lesson2.dwg, create a layer scheme (outline, hidden, centre, dimensions, text), assign colours/linetypes/lineweights ByLayer, and move the existing objects onto the correct layers.
+Create a standards-based layer scheme in lab-table-lesson2.dwg, then audit the supplied office-plan-ground-floor.dwg to see how a larger architectural drawing separates systems.
 
 ## You'll produce
 
-A layered version of the table drawing where every object's colour and linetype come ByLayer.
+A layered table drawing where every object is ByLayer, plus a five-layer audit of the office plan covering naming, colour, linetype, lineweight and plot state.
 
 **Commands / tools:** LAYER (LA), Properties palette (PR), Layer Walk, MATCHPROP, freeze/thaw, lock
 
@@ -57,9 +57,12 @@ A layered version of the table drawing where every object's colour and linetype 
    SETBYLAYER → SAVEAS table-layers.dwg
    ```
 
+7. Open office-plan-ground-floor.dwg and audit five functional layers against the same rules
+
+   ```
+   OPEN office-plan-ground-floor.dwg → LA → record name/colour/linetype/lineweight/plot
+   ```
+
 ## Check your work
 
-Turning each layer off hides exactly its objects, everything reports ByLayer in the Properties palette, and Layer Walk steps cleanly through the scheme.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*
+Turning each layer off hides exactly its objects, everything in table-layers.dwg reports ByLayer, and the office-plan audit identifies five layers with their intended functions.

@@ -57,6 +57,3 @@ The completed EX-4 drawing produced with modify commands rather than re-drawing 
 ## Check your work
 
 Feature spacings measure correct with DIST, offsets are at the specified distances, and the rotated feature sits at exactly the sheet's angle.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*

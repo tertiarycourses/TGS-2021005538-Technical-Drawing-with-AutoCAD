@@ -13,6 +13,8 @@ import os, sys, json
 from docx import Document
 from docx.shared import Pt, RGBColor, Inches
 from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
 
 HERE=os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0,HERE)
 import course_data as C
@@ -69,7 +71,7 @@ SCHEDULE = {
     ("13:55","14:40",45,"lab","Hands-on: "+lab_titles([13,14]), SL("lab13","lab15")),
     ("14:40","14:55",15,"break","Tea break",""),
     ("14:55","15:30",35,"lab","Hands-on: "+lab_titles([15,16]), SL("lab15","wrapup")),
-    ("15:30","15:45",15,"recap","Course recap, feedback, TRAQOM survey and practice exam briefing", SL("wrapup","assessment_end")),
+    ("15:30","15:45",15,"recap","Course recap, feedback, TRAQOM survey and assessment-readiness briefing", SL("wrapup","assessment_end")),
     ("15:45","16:00",15,"assess","Briefing for Assessment and Assessment digital attendance",""),
     ("16:00","17:00",60,"assess","Written Assessment (WA) — Short-Answer Questions (SAQ), 60 minutes, open book",""),
     ("17:00","18:30",90,"assess","Practical Performance (PP) — produce a dimensioned AutoCAD technical drawing, 90 minutes, open book. PM digital attendance",""),
@@ -85,11 +87,14 @@ prodoc.add_cover_page(doc,"LESSON PLAN",C.TITLE,C.VERSION.lstrip("v"),
                       org_logo=os.path.join(ASSETS,"tertiary-infotech-logo.png"),
                       course_logo=None, course_code=C.COURSE_CODE)
 prodoc.add_version_control(doc,[
- ("11",C.VERSION_DATE,"Legacy release — master trainer slides v11 with 2-day schedule.",C.TRAINER),
+ ("11","18 August 2026","Legacy release — master trainer slides v11 with 2-day schedule.",C.TRAINER),
+ ("12","18 August 2026",
+  "Full single-source regeneration: 151-slide house-style deck, 16 hands-on labs, 2-day schedule "
+  "and aligned slide references.",C.TRAINER),
  (C.VERSION.lstrip("v"),C.VERSION_DATE,
-  "Full regeneration in the single-source pipeline: deck rebuilt in the house visual style (151 slides), "
-  "16 hands-on labs in per-lab folders (DWG + PDF + Markdown), schedule re-timed to 9:30am–6:30pm with "
-  "WA 60 min + PP 90 min on Day 2, and slide references added to every schedule row.",C.TRAINER),
+  "DWG integration release: Labs 1, 8–12, 15 and 16 now use verified practice drawings; the Lab 12 "
+  "relative Xref dependency is complete; detailed procedures remain in the guide/labs while the deck "
+  "uses visual briefings and verification slides. Slide references regenerated for v13.",C.TRAINER),
 ])
 prodoc.add_toc(doc)
 
@@ -128,6 +133,14 @@ def set_cell(cell,text,bold=False,size=9.5,color=None,fill=None):
     if color: r.font.color.rgb=color
     if fill: prodoc._shade_cell(cell,fill)
 
+def keep_row_together(row):
+    trPr=row._tr.get_or_add_trPr()
+    trPr.append(OxmlElement("w:cantSplit"))
+
+def repeat_header(row):
+    trPr=row._tr.get_or_add_trPr()
+    flag=OxmlElement("w:tblHeader"); flag.set(qn("w:val"),"true"); trPr.append(flag)
+
 KIND_FILL={"topic":TOPIC_FILL,"break":BREAK_FILL,"lunch":LUNCH_FILL,"assess":ASSESS_FILL,
            "admin":"F3F5F8","recap":"F3F5F8","lab":None}
 
@@ -138,6 +151,7 @@ for day,(theme,rows) in SCHEDULE.items():
     hdr=tbl.add_row().cells
     for i,htext in enumerate(["Time","Duration","Topic / Activity","Slides"]):
         set_cell(hdr[i],htext,bold=True,size=10,color=RGBColor(0xFF,0xFF,0xFF),fill=HEADER_FILL)
+    repeat_header(tbl.rows[0]); keep_row_together(tbl.rows[0])
     training=0
     for start,end,mins,kind,text,slides in rows:
         cells=tbl.add_row().cells; fill=KIND_FILL.get(kind)
@@ -145,6 +159,7 @@ for day,(theme,rows) in SCHEDULE.items():
         set_cell(cells[1],f"{mins} min",fill=fill)
         set_cell(cells[2],text,bold=(kind in ("topic","assess")),fill=fill)
         set_cell(cells[3],slides,size=9,fill=fill)
+        keep_row_together(tbl.rows[-1])
         if kind!="lunch": training+=mins
     for row in tbl.rows:
         row.cells[0].width=Inches(1.05); row.cells[1].width=Inches(0.85)
@@ -157,12 +172,14 @@ tt=doc.add_table(rows=0,cols=3); tt.style="Table Grid"
 hdr=tt.add_row().cells
 for i,htext in enumerate(["Topic / TSC mapping","Ability · Knowledge","Labs"]):
     set_cell(hdr[i],htext,bold=True,size=10,color=RGBColor(0xFF,0xFF,0xFF),fill=HEADER_FILL)
+repeat_header(tt.rows[0]); keep_row_together(tt.rows[0])
 for tp in C.TOPICS:
     acts=[a for a in ACT if a["topic"]==tp["num"]]
     cells=tt.add_row().cells
     set_cell(cells[0],f"Topic {tp['code']}: {tp['title']}",bold=True,fill=TOPIC_FILL)
     set_cell(cells[1],tp["weighting"],fill=TOPIC_FILL)
     set_cell(cells[2],", ".join(f"Lab {a['num']}" for a in acts))
+    keep_row_together(tt.rows[-1])
 
 prodoc.add_page_numbers(doc)
 prodoc.enable_update_fields(doc)

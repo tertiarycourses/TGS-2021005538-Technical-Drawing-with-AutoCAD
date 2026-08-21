@@ -11,8 +11,8 @@ AutoCAD - v11.pptx' (reference/) and rebuilt in the Tertiary house style.
 TITLE        = "WSQ Technical Drawing with AutoCAD"
 SHORT_TITLE  = "WSQ Technical Drawing with AutoCAD"   # used in output filenames
 COURSE_CODE  = "TGS-2021005538"
-VERSION      = "v12"
-VERSION_DATE = "18 August 2026"
+VERSION      = "v13"
+VERSION_DATE = "21 August 2026"
 ORG          = "Tertiary Infotech Academy Pte Ltd"
 UEN          = "UEN: 201200696W"
 TRAINER      = "Dr Alfred Ang"
@@ -124,7 +124,6 @@ ASSESSMENT = dict(
 )
 
 # ------------------------------------------------------------------ links
-PRACTICE_EXAM_URL = "https://exams.tertiaryinfotech.com/practice-exams/autodesk/autocad"
 LMS_URL = "https://lms-tms.tertiaryinfotech.com"
 
 RECOMMENDED_COURSES = [

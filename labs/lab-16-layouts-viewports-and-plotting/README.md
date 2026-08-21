@@ -6,11 +6,11 @@
 
 ## Goal
 
-Compose an A3 layout: attach the title block, create scaled viewports (1:20 and a detail), lock them, and plot the sheet to PDF — the standard submission output.
+Audit the supplied new-office-layout.dwg, then compose an A3 layout with a title block, locked scaled viewports and a standards-compliant PDF plot.
 
 ## You'll produce
 
-A print-ready A3 layout with title block, two locked scaled viewports and a plotted PDF.
+A print-ready A3 office layout with two locked viewports, completed title information, verified lineweights and a plotted PDF.
 
 **Commands / tools:** LAYOUT, PAGESETUP, MVIEW, viewport scale/lock, PLOT, DWG to PDF.pc3
 
@@ -21,13 +21,13 @@ A print-ready A3 layout with title block, two locked scaled viewports and a plot
 
 ## Step-by-step
 
-1. Open your annotated drawing, switch to a Layout tab and rename it A3-SHEET
+1. Open new-office-layout.dwg, inspect its model/layout tabs and save a working copy
 
    ```
-   right-click tab → Rename
+   OPEN new-office-layout.dwg → SAVEAS office-layout-mine.dwg
    ```
 
-2. Set the page: DWG To PDF.pc3, ISO A3 (420×297), landscape, 1:1 plot scale
+2. Rename the working layout A3-SHEET and set DWG To PDF.pc3, ISO A3 landscape, 1:1
 
    ```
    PAGESETUP → Modify
@@ -60,6 +60,3 @@ A print-ready A3 layout with title block, two locked scaled viewports and a plot
 ## Check your work
 
 Both viewports report their exact scales in the status bar and cannot be zoomed when locked, and the plotted PDF shows the complete titled sheet at A3.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*

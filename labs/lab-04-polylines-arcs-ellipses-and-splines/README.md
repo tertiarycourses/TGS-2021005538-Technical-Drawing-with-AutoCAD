@@ -57,6 +57,3 @@ The completed EX-3 drawing with mixed line/arc geometry drawn as clean, connecte
 ## Check your work
 
 The outline is a single polyline (one object when selected), arcs and the ellipse match the sheet dimensions, and no construction lines remain in the final drawing.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*

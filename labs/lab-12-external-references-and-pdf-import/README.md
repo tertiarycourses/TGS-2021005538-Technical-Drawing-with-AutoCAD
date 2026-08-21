@@ -6,11 +6,11 @@
 
 ## Goal
 
-Attach the title-block drawing as an external reference under the table drawing, observe how xref updates flow through, then attach a PDF as an underlay and import PDF geometry.
+Repair and verify the relative Landscaping_REV1 Xref in the supplied office-layout host, then attach a title block and a PDF underlay and import vector geometry.
 
 ## You'll produce
 
-A host drawing with a live xref title block and a PDF underlay ready for tracing.
+A host drawing whose landscaping Xref resolves from the lab folder, with an additional live title-block Xref and an imported PDF geometry sample.
 
 **Commands / tools:** XREF/ATTACH, External References palette, PDFATTACH, PDFIMPORT
 
@@ -19,31 +19,32 @@ A host drawing with a live xref title block and a PDF underlay ready for tracing
 - `title-block.dwg` — AutoCAD drawing file
 - `ex1-drawing-sheet.pdf` — drawing sheet / reference (PDF)
 - `new-office-layout-with-xref.dwg` — AutoCAD drawing file
+- `Landscaping_REV1.dwg` — AutoCAD drawing file
 
 ## Step-by-step
 
-1. Open your layered table drawing from Lab 9 as the host drawing
+1. Keep new-office-layout-with-xref.dwg and Landscaping_REV1.dwg together, then open the host
 
    ```
-   OPEN table-layers.dwg
+   OPEN new-office-layout-with-xref.dwg
    ```
 
-2. Attach title-block.dwg as an Xref at 0,0, scale 1
+2. Open External References and confirm Landscaping_REV1 is Found using a relative path
+
+   ```
+   XR → Landscaping_REV1 → Saved Path: .\Landscaping_REV1.dwg
+   ```
+
+3. If unresolved, select a new path in the current lab folder, reload, and retain a relative path
+
+   ```
+   XR → Change Path → Select New Path → Reload
+   ```
+
+4. Attach title-block.dwg as an additional Xref at 0,0, scale 1
 
    ```
    XATTACH → title-block.dwg
-   ```
-
-3. Open the External References palette and note the xref's status and path
-
-   ```
-   XR (External References)
-   ```
-
-4. Edit the title block in its own file, save, and reload the xref in the host
-
-   ```
-   XR → right-click → Reload
    ```
 
 5. Attach the supplied drawing-sheet PDF as an underlay and snap to its geometry
@@ -60,7 +61,4 @@ A host drawing with a live xref title block and a PDF underlay ready for tracing
 
 ## Check your work
 
-Changing the title block file and reloading updates the host without copying geometry, and PDFIMPORT produces editable AutoCAD objects from the underlay.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*
+Both Xrefs show Loaded, Landscaping_REV1 uses a relative path and survives reopening the folder elsewhere, while PDFIMPORT produces editable AutoCAD objects from the underlay.

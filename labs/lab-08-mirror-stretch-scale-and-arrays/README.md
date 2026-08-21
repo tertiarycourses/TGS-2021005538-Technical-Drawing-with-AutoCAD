@@ -6,11 +6,11 @@
 
 ## Goal
 
-Produce practice drawing EX-6 by drawing half of the symmetric design and mirroring it, then distributing the hole pattern with rectangular and polar arrays, and adjusting sizes with STRETCH and SCALE.
+Produce practice drawing EX-6 with mirror, stretch, scale and arrays, then inspect the supplied sawblade drawing to reverse-engineer a production polar-array pattern.
 
 ## You'll produce
 
-The completed EX-6 drawing with its symmetric outline and evenly arrayed hole pattern.
+The completed EX-6 drawing plus a verified sawblade polar array with the correct centre, item count, fill angle and associative state.
 
 **Commands / tools:** MIRROR, STRETCH (crossing window), SCALE (Reference), ARRAYRECT, ARRAYPOLAR
 
@@ -37,10 +37,10 @@ The completed EX-6 drawing with its symmetric outline and evenly arrayed hole pa
    AR → R → rows/cols/spacing
    ```
 
-4. Distribute the bolt holes around the centre with a polar array
+4. Distribute the bolt holes around the centre with an associative polar array
 
    ```
-   AR → PO → centre → items → 360
+   AR → PO → centre → items → 360 → Associative: Yes
    ```
 
 5. Stretch the slot to its dimensioned length with a crossing window, scale a feature with Reference
@@ -49,7 +49,13 @@ The completed EX-6 drawing with its symmetric outline and evenly arrayed hole pa
    S → crossing → base → distance  ·  SC → R
    ```
 
-6. Verify against ex6.dwg and save
+6. Open sawblade.dwg, select its tooth array and record centre, item count, fill angle and associativity
+
+   ```
+   OPEN sawblade.dwg → select array → PR
+   ```
+
+7. Verify against ex6.dwg and save
 
    ```
    SAVEAS ex6-mine.dwg
@@ -57,7 +63,4 @@ The completed EX-6 drawing with its symmetric outline and evenly arrayed hole pa
 
 ## Check your work
 
-The two halves are perfectly symmetric about the centreline, array counts and spacings match the sheet, and the stretched slot measures the dimensioned length.
-
----
-*© 2026 Tertiary Infotech Academy Pte Ltd (UEN: 201200696W) · WSQ Technical Drawing with AutoCAD · TGS-2021005538*
+The two halves are symmetric, array counts and spacings match the sheet, the slot length is correct, and you can explain the four defining properties of the sawblade polar array.
