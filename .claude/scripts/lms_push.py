@@ -108,8 +108,8 @@ FOLDERS = {
     "learner_guide": ("Learner Guide", "learner guide"),
     "lesson_plan": ("Lesson Plan", "lesson plan"),
     "assessment": ("Assessment", "assessment"),
-    # The labs are a FOLDER of many files, not a single document, so the
-    # Activities/Lab URL links the folder itself (see take_folder below).
+    # The hands-on materials are a FOLDER of many files, not a single document,
+    # so the Activities/Lab URL links the folder itself (see take_folder below).
     "activities": ("Activities", "activit"),
 }
 
@@ -270,10 +270,18 @@ def take_folder(field, folder_key, root, out, missing):
     # courseware folders but too harsh here: a course may legitimately have no
     # labs. Resolve it leniently and report a miss instead.
     dirs = rc(["lsjson", f"{REMOTE}:", "--dirs-only"], root, parse=True)
-    match = (next((d for d in dirs if d["Name"].strip().lower() == canonical.lower()), None)
-             or next((d for d in dirs if hint in d["Name"].strip().lower()), None))
+    activities = next((d for d in dirs if d["Name"].strip().lower() == "activities"), None)
+    labs = next((d for d in dirs if d["Name"].strip().lower() == "labs"), None)
+    if activities and labs:
+        raise SystemExit(
+            "Both 'Activities' and 'Labs' exist on Drive. Keep exactly one hands-on folder "
+            "before publishing so the LMS link cannot be ambiguous."
+        )
+    match = activities or labs or next(
+        (d for d in dirs if hint in d["Name"].strip().lower()), None
+    )
     if not match:
-        missing.append(f"{FIELD_LABELS[field]}: no '{canonical}' folder on Drive "
+        missing.append(f"{FIELD_LABELS[field]}: no 'Activities' or 'Labs' folder on Drive "
                        f"(found: {', '.join(d['Name'].strip() for d in dirs) or 'nothing'})")
         return
     d = match["Name"]
