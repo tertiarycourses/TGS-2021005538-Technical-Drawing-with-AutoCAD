@@ -5,6 +5,15 @@
 **Provider:** Tertiary Infotech Academy Pte Ltd (UEN 201200696W)
 **Register:** [WSQ Technical Drawing with AutoCAD](https://www.tertiarycourses.com.sg/wsq-technical-drawing-with-autocad.html)
 
+| Course detail | Information |
+|---|---|
+| Course code | `TGS-2021005538` |
+| Programme | WSQ (SkillsFuture Singapore) |
+| Duration | 2 days, 16 hours (including 2-hour assessment) |
+| Registration | [View course details and register](https://www.tertiarycourses.com.sg/wsq-technical-drawing-with-autocad.html) |
+| Funding | Up to 70% WSQ course fee funding for eligible learners (50% baseline for Singapore Citizens/PRs aged 21+; 70% for Singapore Citizens aged 40+ under MCES or SME-sponsored learners). Eligibility and terms apply - see the course page. |
+| Provider | Tertiary Infotech Academy Pte Ltd |
+
 A 2-day (16-hour) instructor-led WSQ course on producing professional technical drawings with Autodesk AutoCAD — from first drawing setup to a plotted, submission-ready sheet with dimensions, part lists and title blocks.
 
 ## Learning Outcomes
